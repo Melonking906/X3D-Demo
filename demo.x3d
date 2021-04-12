@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+    <!-- The scene is like the HTML body tag, it defines the visual content -->
+    <Scene>
+        
+        <!--     World Meta Data, Background colour is in Generic Decimal colour format     -->
+        <WorldInfo title='Demo Land' />
+		<Background skyColor='0.000, 0.662, 0.949' />
+        
+        <!--     The players view position     -->
+        <Viewpoint position="43.13747 9.08974 -68.82131" orientation="0.06506 0.99585 0.06369 2.39221" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description=""></Viewpoint>
+        <!--     How the player moves within the world, there are a number of options     -->
+		<navigationInfo type='"LOOKAT"' headlight='false' speed='0.5' avatarSize='120' ></navigationInfo>
+		
+        <!--     Objects in the world     -->
+        <!--     Transform tags are like divs, they allow us to position and manipulate everything within them     -->
+        <Transform DEF='WORLD' translation='0 0 0' >
+            
+            <!--     This is an example of loading a model from a separate file     -->
+            <Transform translation='0 -25 0' >
+                <inline url='assets/hill.x3d' />
+            </Transform>
+            
+            <!--     This is an example of a generic object and an image being rendered onto it     -->
+            <Transform translation='0 -10 0' >
+                <Shape>
+                    <Box size='500 0.1 500' />
+                    <Appearance>
+                        <ImageTexture url='assets/water.jpg'/>
+                    </Appearance>
+                </Shape>
+            </Transform>
+            
+        </Transform>
+        
+		<!--   +++++  Animations, they require 3 parts  ++++   -->
+        <!--     A time sensor is like a clock, it ticks away and defines some time     -->
+        <TimeSensor DEF='NORMAL_TIMER' cycleInterval='10' loop='true' />
+        
+        <!--     The interpolator is the animation, it is the key frames the animation     -->
+        <OrientationInterpolator DEF='SPIN_ME' key='0.00 0.25 0.50 0.75 1.00' keyValue='0 1 0 0 0 1 0 1.57079 0 1 0 3.14159 0 1 0 4.7123889 0 1 0 6.2831852' />
+
+        <!--     Finally you need to connect the timer and the keyframes     -->
+        <ROUTE fromNode='NORMAL_TIMER' fromField='fraction_changed' toNode='SPIN_ME' toField='set_fraction'/>
+        <ROUTE fromNode='SPIN_ME' fromField='value_changed' toNode='WORLD' toField='rotation'/>
+		
+    </Scene>
+</X3D>
