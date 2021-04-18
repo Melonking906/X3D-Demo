@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="x3dom/x3dom.css">
 		<style>
 			
+			/* Main Body and X3D styling, we make it fill the entire browser window */			
 			body, html, x3d {
 				border: none;
 				margin: 0px;
@@ -17,10 +18,36 @@
 				height: 100%;
 				overflow: hidden;
 			}
+			
+			/* This is styling for a console style text area */			
+			#messages {
+				float: left;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				padding: 10px;
+				width: 100%;
+				max-height: 50px;
+			}
 
 		</style>
 	</head>
 	<body>
+		
+		<!-- This is what loads your primary X3D file -->		
 		<x3d PrimitiveQuality='Medium' disableDoubleClick="true"><scene><inline url='demo.x3d'/></scene></x3d>
+		
+		<!-- This is a console style message system and an example of javascript you can call from X3D -->		
+		<div id="messages"></div>
+		<script>
+			let textbox = document.getElementById('messages'); 
+			let textStream = "";
+			function txtDisplay( message )
+			{
+				textStream = message + '<br/>' + textStream;
+				textbox.innerHTML = textStream;
+			}
+		</script>
+		
 	</body>
 </html>

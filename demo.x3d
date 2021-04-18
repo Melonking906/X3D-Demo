@@ -19,7 +19,9 @@
             
             <!--     This is an example of loading a model from a separate file     -->
             <Transform translation='0 -25 0' >
-                <inline url='assets/hill.x3d' />
+                <!-- How to load other X3D files, also an example of javascript being called from within X3D -->                
+                <inline url='assets/hill.x3d' /> 
+                
             </Transform>
             
             <!--     This is an example of a generic object and an image being rendered onto it     -->
@@ -32,7 +34,19 @@
                 </Shape>
             </Transform>
             
+            <!-- An example of adding a javascript click function to an object -->            
+            <Transform translation='0 0 0' >
+                <Shape onclick="txtDisplay('You have clicked the orb!');">
+                    <Sphere radius='5' /> 
+                </Shape>
+            </Transform>
+            
         </Transform>
+        
+        <!-- An example of how to add sound! -->                
+        <Sound>
+            <AudioClip loop='true' enabled="true" url='assets/auldlangsyne.mp3'/>    
+        </Sound>
         
 		<!--   +++++  Animations, they require 3 parts  ++++   -->
         <!--     A time sensor is like a clock, it ticks away and defines some time     -->
