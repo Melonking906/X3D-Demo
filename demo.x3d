@@ -11,17 +11,16 @@
         <!--     The players view position     -->
         <Viewpoint position="43.13747 9.08974 -68.82131" orientation="0.06506 0.99585 0.06369 2.39221" centerOfRotation="0.00000 0.00000 0.00000" fieldOfView="0.78540" description=""></Viewpoint>
         <!--     How the player moves within the world, there are a number of options     -->
-		<navigationInfo type='"LOOKAT"' headlight='false' speed='0.5' avatarSize='120' ></navigationInfo>
+	    <navigationInfo type='"LOOKAT"' headlight='false' speed='0.5' avatarSize='120' ></navigationInfo>
 		
         <!--     Objects in the world     -->
         <!--     Transform tags are like divs, they allow us to position and manipulate everything within them     -->
         <Transform DEF='WORLD' translation='0 0 0' >
             
             <!--     This is an example of loading a model from a separate file     -->
-            <Transform translation='0 -25 0' >
-                <!-- How to load other X3D files, also an example of javascript being called from within X3D -->                
+            <Transform translation='0 -25 0' scale="1 1 1" >
+                <!-- How to load other X3D files -->                
                 <inline url='assets/hill.x3d' /> 
-                
             </Transform>
             
             <!--     This is an example of a generic object and an image being rendered onto it     -->
@@ -58,6 +57,7 @@
         <!--     Finally you need to connect the timer and the keyframes     -->
         <ROUTE fromNode='NORMAL_TIMER' fromField='fraction_changed' toNode='SPIN_ME' toField='set_fraction'/>
         <ROUTE fromNode='SPIN_ME' fromField='value_changed' toNode='WORLD' toField='rotation'/>
+        <!-- ALERT the world has been animated to spin, you may wish to remove this if your editing this file!!! -->        
 		
     </Scene>
 </X3D>
